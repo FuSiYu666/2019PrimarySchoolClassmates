@@ -35,8 +35,11 @@
             padding: 15px;
         }
         .card img {
-            width: 300px;
-            height: 300px;
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
         }
         .card h2 {
             margin: 10px 0;
@@ -59,15 +62,30 @@
         const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
-fetch('../config.json')
-    .then(response => response.json())
-    .then(data => {
-        if (id && data[id]) {
-            document.getElementById('name').textContent = data[id].name;
-            document.getElementById('detail').textContent = data[id].detail;
-            document.getElementById('cardImage').src = `../${data[id].image}`;
-        }
-    });
+const img = new Image();
+        img.src = `../${id}.jpg`;
+        img.onload = function() {
+            document.getElementById('cardImage').src = `../${id}.jpg`;
+            fetch('../config.json')
+                .then(response => response.json())
+                .then(data => {
+                    if (id && data[id]) {
+                        document.getElementById('name').textContent = data[id].name || `${id}号`;
+                        document.getElementById('detail').textContent = data[id].detail || '暂无';
+                    } else {
+                        document.getElementById('name').textContent = `${id}号`;
+                        document.getElementById('detail').textContent = '暂无';
+                    }
+                })
+                .catch(() => {
+                    document.getElementById('name').textContent = `${id}号`;
+                    document.getElementById('detail').textContent = '暂无';
+                });
+        };
+        img.onerror = function() {
+            // 图片不存在时不显示
+            document.querySelector('.card').style.display = 'none';
+        };
     </script>
 </body>
 </html>
