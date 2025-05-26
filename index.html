@@ -253,38 +253,6 @@
         <input type="text" class="search-input" placeholder="搜索...">
         <button class="search-button">🔎</button>
     </div>
-    <div class="card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+Q2FyZCBJbWFnZTwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Card Image">
-        <h2 class="big-text">卡片1</h2>
-        <p class="small-text">小文字描述</p>
-        <div class="buttons">
-            <button class="detail-button" data-card="1">详细信息</button>
-        </div>
-    </div>
-    <div class="card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+Q2FyZCBJbWFnZTwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Card Image">
-        <h2 class="big-text">卡片2</h2>
-        <p class="small-text">小文字描述</p>
-        <div class="buttons">
-            <button class="detail-button" data-card="1">详细信息</button>
-        </div>
-    </div>
-    <div class="card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+Q2FyZCBJbWFnZTwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Card Image">
-        <h2 class="big-text">卡片3</h2>
-        <p class="small-text">小文字描述</p>
-        <div class="buttons">
-            <button class="detail-button" data-card="1">详细信息</button>
-        </div>
-    </div>
-    <div class="card">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiB2aWV3Qm94PSIwIDAgMTAwIDEwMCI+CiAgICAgICAgPHJlY3Qgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmZmYiLz4KICAgICAgICA8dGV4dCB4PSI1MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzAwMCI+Q2FyZCBJbWFnZTwvdGV4dD4KICAgIDwvc3ZnPg==" alt="Card Image">
-        <h2 class="big-text">卡片4</h2>
-        <p class="small-text">小文字描述</p>
-        <div class="buttons">
-            <button class="detail-button" data-card="1">详细信息</button>
-        </div>
-    </div>
 
     <script>
         // 自动创建1~54号卡片
@@ -395,6 +363,8 @@ modal.innerHTML = `
                 <button class="size-option active" data-size="large">大卡片</button>
                 <button class="size-option" data-size="small">小卡片</button>
             </div>
+            <h2 style="margin-top: 20px; margin-bottom: 10px;">系统设置</h2>
+            <button class="clear-cache" style="padding: 8px 16px; background-color: rgba(255, 255, 255, 0.3); border: none; border-radius: 5px; color: white; cursor: pointer;">清除缓存并重新加载</button>
         </div>
     </div>
 `;
@@ -429,6 +399,14 @@ sizeOptions.forEach(option => {
             cards.forEach(card => {
                 card.className = 'card ' + size;
             });
+
+// 清除缓存按钮点击事件
+document.querySelector('.clear-cache').addEventListener('click', () => {
+    // 添加时间戳参数强制刷新
+    const url = new URL(window.location.href);
+    url.searchParams.set('_', Date.now());
+    window.location.href = url.toString();
+});
             
             // 更新活动按钮样式
             document.querySelectorAll('.size-option').forEach(btn => {

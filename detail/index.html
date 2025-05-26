@@ -56,7 +56,9 @@
     <div class="card">
         <img src="../1.jpg" alt="Card Image" id="cardImage">
         <h2 id="name"></h2>
-        <p id="detail"></p>
+        <p id="tel"></p>
+        <p id="wechat"></p>
+        <p id="qq"></p>
     </div>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
@@ -71,15 +73,21 @@ const img = new Image();
                 .then(data => {
                     if (id && data[id]) {
                         document.getElementById('name').textContent = data[id].name || `${id}号`;
-                        document.getElementById('detail').textContent = data[id].detail || '暂无';
+                        document.getElementById('tel').textContent = `手机号码：${data[id].tel || '暂无'}`;
+                        document.getElementById('wechat').textContent = `微信号：${data[id].wechat || '暂无'}`;
+                        document.getElementById('qq').textContent = `QQ号码：${data[id].qq || '暂无'}`;
                     } else {
                         document.getElementById('name').textContent = `${id}号`;
-                        document.getElementById('detail').textContent = '暂无';
+                        document.getElementById('tel').textContent = '手机号码：暂无';
+                        document.getElementById('wechat').textContent = '微信号：暂无';
+                        document.getElementById('qq').textContent = 'QQ号码：暂无';
                     }
                 })
                 .catch(() => {
                     document.getElementById('name').textContent = `${id}号`;
-                    document.getElementById('detail').textContent = '暂无';
+                    document.getElementById('tel').textContent = '手机号码：暂无';
+                    document.getElementById('wechat').textContent = '微信号：暂无';
+                    document.getElementById('qq').textContent = 'QQ号码：暂无';
                 });
         };
         img.onerror = function() {
